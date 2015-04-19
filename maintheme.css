@@ -23,3 +23,36 @@
 #response .hlight{
     background-color:yellow;
 }
+
+#footer {
+    position:fixed;
+    margin-left:auto;
+    margin-right:auto;
+    bottom:0px;
+    height:30px;
+    text-align:center;
+    link-color:
+    width:75%%;
+}
+
+
+#footer li
+{
+    display: inline;
+    list-style-type: none;
+    padding-right: 40px;
+}
+
+a:link {
+    color: #000000;
+}
+
+/* visited link */
+a:visited {
+    color: #000000;
+}
+
+/* mouse over link */
+a:hover {
+    color: #550000;
+}
