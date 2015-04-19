@@ -1,0 +1,25 @@
+#main_container{
+    width: 75%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#response{
+    word-wrap:break-word;
+    font-family: 'Oxygen Mono';
+}
+
+#input_container{
+    width: 100%;   
+}
+
+#input_container input{
+    width: 95%;
+    margin-left:2px;
+    border-width:0px;
+    border-bottom-width: 2px;
+}
+
+#response .hlight{
+    background-color:yellow;
+}
