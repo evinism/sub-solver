@@ -61,7 +61,8 @@ function Game(){
     this.inputStack = [];
     this.stackPos = -1;
     this.started = false;
-    this.display("Type in <b>random</b> to begin<br>");
+    plaintext_list = shuffle(plaintext_list);
+    this.display("Type in <b>random</b> to begin, or <b>help</b> for a brief introduction<hr>");
 }
 
 Game.prototype.parse_input = function(input){
@@ -78,6 +79,8 @@ Game.prototype.parse_input = function(input){
             this.lockedLetters = []
             this.displayCipherText();
         }
+    }else if (input=="help"){
+        this.append("<p>The objective is to obtain the encoded English phrase by swapping letters in the ciphertext, from which all punctuation and whitespace has been removed. To swap letters, type in two consecutive letters.</p><p><b>Example:</b> To swap T and D, type \"<b>tb</b>\" and press <b>enter</b>.</p><p>If you are sure of a letter, you can lock it in by typing a letter, followed by a space.</p><p><b>Example:</b> To lock in T, type in \"<b>t </b>\" and press <b>Enter</b></p>")
     //For standard swaps:
     }else if (input.length==2 && input.match(/\w\w/)){
         if (this.started){
@@ -119,7 +122,7 @@ Game.prototype.displayCipherText = function(){
     baseStr = []
     baseStr.push("<span id=\"ctext\">");
     for (var i=0; i<this.ciphertext.length; i++){
-        if ((this.lockedLetters.join("").search(this.ciphertext[i])>= 0)){
+        if (this.lockedLetters !=[] && (this.lockedLetters.join("").search(this.ciphertext[i])>= 0)){
             baseStr.push("<span class=\"hlight\">"+this.ciphertext[i]+"</span>");
         }else{
             baseStr.push(this.ciphertext[i]);
@@ -146,7 +149,11 @@ Game.prototype.clear = function(){
 
 Game.prototype.startNewGame = function(){
     this.started = true;
-    this.currentItem = plaintext_list[Math.floor(Math.random()*plaintext_list.length)];
+    this.currentItem = plaintext_list.pop();
+    if(!this.currentItem){
+        this.display("No more games remain. Refresh to start from the beginning.<hr>");
+        return;
+    }
     this.strippedItem = stripString(this.currentItem.plaintext);
     this.orig = orderStringByFreq(this.strippedItem);
     this.ciphertext = this.orig;
@@ -170,7 +177,7 @@ Game.prototype.triggerWin = function(){
                 clearInterval(g.spacing_timer);
                 g.ciphertext = g.currentItem.plaintext;
                 g.displayCipherText();
-                g.append("<div style=\"width: 100%;text-align: right;\"><b> - "+g.currentItem.author+"</b><br>"+g.currentItem.origin+"</div><br>");
+                g.append("<div style=\"width: 100%;text-align: right;\"><b> - "+g.currentItem.author+"</b><br>"+g.currentItem.origin+"</div>");
             }
         }
     }(this), 25);

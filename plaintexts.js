@@ -19,7 +19,14 @@ plaintext_list = [{
     plaintext: "And the Grinch, with his Grinch-feet ice cold in the snow, stood puzzling and puzzling, how could it be so? It came without ribbons. It came without tags. It came without packages, boxes or bags. And he puzzled and puzzled 'till his puzzler was sore. Then the Grinch thought of something he hadn't before. What if Christmas, he thought, doesn't come from a store. What if Christmas, perhaps, means a little bit more.",
     author: "Dr. Seuss",
     origin: "excerpt from <b>How the Grinch Stole Christmas</b>",
-}]
+},
+{
+    plaintext: "Every inch of wall space is covered by a bookcase. Each bookcase has six shelves, going almost to the ceiling. Some bookshelves are stacked to the brim with hardback books: science, maths, history, and everything else. Other shelves have two layers of paperback science fiction, with the back layer of books propped up on old tissue boxes or lengths of wood, so that you can see the back layer of books above the books in front. And it still isn't enough. Books are overflowing onto the tables and the sofas and making little heaps under the windows.",
+    author: "Eliezer Yudkowsky",
+    origin: "excerpt from <b>Harry Potter and the Methods of Rationality</b>"
+}
+
+]
 
 
 
