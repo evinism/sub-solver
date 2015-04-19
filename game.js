@@ -1,3 +1,39 @@
+function stripString(str){
+    return str.replace(/[^a-zA-Z\s]/g,"").toLowerCase();
+}
+
+
+//---DON'T LOOK AT THISSs----------------------
+function orderStringByFreq(str){
+    var order = "etaoinshrdlcumwfgypbvkjxqz";
+    var replacement_list = [];
+    var replacement_map = {};
+    replacement_map[" "] = " ";
+    for(var i=0; i<order.length; i++){
+        var c = order[i];
+        var re = new RegExp(c,"g");
+        var matches = str.match(re);
+        if( matches )
+            num = matches.length;
+        else
+            num = 0;
+        //console.log(num);
+        replacement_list.push( {count:num, letter:c} );     
+    }
+    //replacement_list = shuffle(replacement_list);
+    replacement_list.sort(function(a,b){return (a.count-b.count)});
+    replacement_list.reverse();
+    for(var i=0; i<replacement_list.length; i++){
+        replacement_map[replacement_list[i].letter] = order[i]; 
+    }
+    var retlist = [];
+    for(var i=0; i<str.length; i++){
+        retlist.push(replacement_map[str[i]]);
+    }
+    return retlist.join("");
+}
+
+
 function Game(){
     $('#input_dialog').keypress(function(game){ 
         return function(e){
@@ -25,7 +61,7 @@ function Game(){
     this.inputStack = [];
     this.stackPos = -1;
     this.started = false;
-    this.display("Type in <b>random</b> to begin");
+    this.display("Type in <b>random</b> to begin<br>");
 }
 
 Game.prototype.parse_input = function(input){
@@ -46,12 +82,14 @@ Game.prototype.parse_input = function(input){
     }else if (input.length==2 && input.match(/\w\w/)){
         if (this.started){
             //console.log(input);
-            re = new RegExp("["+input+"]","g");
+            var re = new RegExp("["+input+"]","g");
             if(this.lockedLetters.join("").search(re)>=0){
                 this.displayCipherText();
                 this.append("Can't swap; One or more of the letters is locked");
             }else{
                 this.ciphertext = this.ciphertext.replace(re, function(x){if(x==input[0]) return input[1]; return input[0];});
+                if(this.ciphertext == this.strippedItem)
+                    this.triggerWin();
                 this.displayCipherText();
             }         
 
@@ -74,7 +112,12 @@ Game.prototype.parse_input = function(input){
 }
 
 Game.prototype.displayCipherText = function(){
+    if(!this.started){
+        this.display("Type in <b>random</b> to begin<br>");
+        return;
+    }
     baseStr = []
+    baseStr.push("<span id=\"ctext\">");
     for (var i=0; i<this.ciphertext.length; i++){
         if ((this.lockedLetters.join("").search(this.ciphertext[i])>= 0)){
             baseStr.push("<span class=\"hlight\">"+this.ciphertext[i]+"</span>");
@@ -82,9 +125,12 @@ Game.prototype.displayCipherText = function(){
             baseStr.push(this.ciphertext[i]);
         }
     }
+    baseStr.push("</span>");
     baseStr.push("<hr>");
     this.display(baseStr.join(""));
+    $("#ctext").css("word-spacing", this.cur_spacing + "ch");
 }
+
 
 Game.prototype.display = function(output){
     $("#response").html(output);
@@ -100,12 +146,59 @@ Game.prototype.clear = function(){
 
 Game.prototype.startNewGame = function(){
     this.started = true;
-    this.orig = "trefekesnornhteseotisaloeuittremeetnhgwpcegsiooeoticedassawasiteuiontyiowptreotitlettenoedraeunhtreolwoexlehtdasseobahuehdeaftraoeyraittehueuictralgrodihtmehtnahaddlsonhtrefasmicblwcnditnahoaftreoadnetpdiltnahnotrefnsotdiseaftraoeiddlotameutafideaddionahicdriscitihspihunmbaotlsecegsiooefasoametnmecehttrenmigetabsafeooasyewwwltittrecittesoueitrntyiosetlsheutarnmihuseminhonhrnobaooeoonahyresenkneyeunthatcahgigantnotslcpitessnwcetrnhgihulhmnotiviwcpivnhtatreuseimodlcbtlseafpalhgyncdaj"
+    this.currentItem = plaintext_list[Math.floor(Math.random()*plaintext_list.length)];
+    this.strippedItem = stripString(this.currentItem.plaintext);
+    this.orig = orderStringByFreq(this.strippedItem);
     this.ciphertext = this.orig;
+    this.cur_spacing = -1;
     this.displayCipherText();
 }
+
+Game.prototype.triggerWin = function(){
+    this.lockedLetters = [];
+    this.displayCipherText();
+    this.max_spacing = 0;
+    this.cur_spacing = -1;
+    //alert("win!");
+    this.spacing_timer = setInterval(function(g){
+        return function(){
+            if(g.max_spacing>g.cur_spacing){
+                g.cur_spacing+=0.05;
+                g.displayCipherText();
+            }else{
+                g.cur_spacing = g.max_spacing;
+                clearInterval(g.spacing_timer);
+                g.ciphertext = g.currentItem.plaintext;
+                g.displayCipherText();
+                g.append("<div style=\"width: 100%;text-align: right;\"><b> - "+g.currentItem.author+"</b><br>"+g.currentItem.origin+"</div><br>");
+            }
+        }
+    }(this), 25);
+}
+
 
 $(document).ready(function(){
     game = new Game();
     console.log("loaded");
 });
+
+
+//From stackoverflow
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex ;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
