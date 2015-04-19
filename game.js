@@ -1,9 +1,16 @@
+/*  For those of you looking at my javascript trying to see how this works:
+    This was made VERY QUICKLY with very little foresight or planning
+    It is uniformly terrible code. Proceed at your own risk.
+    
+    Happy Hacking,
+    - Evin
+*/
+
+
 function stripString(str){
-    return str.replace(/[^a-zA-Z\s]/g,"").toLowerCase();
+    return str.replace(/[^a-zA-Z]/g,"").toLowerCase();
 }
 
-
-//---DON'T LOOK AT THISSs----------------------
 function orderStringByFreq(str){
     var order = "etaoinshrdlcumwfgypbvkjxqz";
     var replacement_list = [];
@@ -40,7 +47,7 @@ function Game(){
             if (e.keyCode == 13) {
                 game.stackPos = -1;//-1 means a new input.
                 game.inputStack.push(this.value);
-                game.parse_input(this.value);
+                game.parse_input(this.value.toLowerCase());
                 this.value = "";
             }
             if (e.keyCode == 38){
@@ -62,7 +69,7 @@ function Game(){
     this.stackPos = -1;
     this.started = false;
     plaintext_list = shuffle(plaintext_list);
-    this.display("Type in <b>random</b> to begin, or <b>help</b> for a brief introduction<hr>");
+    this.displayCipherText();
 }
 
 Game.prototype.parse_input = function(input){
@@ -91,11 +98,15 @@ Game.prototype.parse_input = function(input){
                 this.append("Can't swap; One or more of the letters is locked");
             }else{
                 this.ciphertext = this.ciphertext.replace(re, function(x){if(x==input[0]) return input[1]; return input[0];});
-                if(this.ciphertext == this.strippedItem)
+                if(this.ciphertext == this.strippedItem){
                     this.triggerWin();
-                this.displayCipherText();
+                }else{
+                    this.displayCipherText();
+                }
             }         
 
+        }else{
+            this.append("Begin a new game to start swapping letters<br>");
         }
     //For locking letters
     }else if (input.length==2 && input.match(/\w\s/)){
@@ -116,7 +127,7 @@ Game.prototype.parse_input = function(input){
 
 Game.prototype.displayCipherText = function(){
     if(!this.started){
-        this.display("Type in <b>random</b> to begin<br>");
+        this.display("Type in <b>random</b> to begin, or <b>help</b> for a brief introduction<hr>");
         return;
     }
     baseStr = []
@@ -131,7 +142,7 @@ Game.prototype.displayCipherText = function(){
     baseStr.push("</span>");
     baseStr.push("<hr>");
     this.display(baseStr.join(""));
-    $("#ctext").css("word-spacing", this.cur_spacing + "ch");
+
 }
 
 
@@ -166,21 +177,14 @@ Game.prototype.triggerWin = function(){
     this.displayCipherText();
     this.max_spacing = 0;
     this.cur_spacing = -1;
-    //alert("win!");
-    this.spacing_timer = setInterval(function(g){
-        return function(){
-            if(g.max_spacing>g.cur_spacing){
-                g.cur_spacing+=0.05;
-                g.displayCipherText();
-            }else{
-                g.cur_spacing = g.max_spacing;
-                clearInterval(g.spacing_timer);
-                g.ciphertext = g.currentItem.plaintext;
-                g.displayCipherText();
-                g.append("<div style=\"width: 100%;text-align: right;\"><b> - "+g.currentItem.author+"</b><br>"+g.currentItem.origin+"</div>");
-            }
-        }
-    }(this), 25);
+    var newText = this.currentItem.plaintext;
+    var g = this;
+    $('#ctext').animate({'opacity': 0}, 1000, function () {
+            $(this).text(newText);
+    }).animate({'opacity': 1}, 1000, function () {
+        g.append("<div style=\"width: 100%;text-align: right;\"><b> - "+g.currentItem.author+"</b><br>"+g.currentItem.origin+"</div>Type in <b>Random</b> for another game.");
+        g.started = false;
+    });
 }
 
 
