@@ -11,7 +11,7 @@ plaintext_list = [{
     origin: "excerpt from <b>The Call of Cthulhu</b>",
 },
 {
-    plaintext: "Then Horton stopped walking. The speck-voice was talking! The voice was so faint he could just barley hear it. “Speak up, please” said Horton. He put his ear near it. “My friend,” came the voice, “you’re a very fine friend. You’ve helped all us folks on this dust speck no end. You’ve saved all our houses, our ceilings and floors. You’ve saved all our churches and grocery stores.",
+    plaintext: "Then Horton stopped walking. The speck-voice was talking! The voice was so faint he could just barley hear it. “Speak up, please” said Horton. He put his ear near it. “My friend,” came the voice, “you’re a very fine friend. You’ve helped all us folks on this dust speck no end. You’ve saved all our houses, our ceilings and floors. You’ve saved all our churches and grocery stores.” “You mean...” Horton gasped, “you have buildings there, too?” “Oh, yes,” piped the voice. “We most certainly do... “I know,” called the voice, “I’m too small to be seen but I’m mayor of a town that is friendly and clean. Our buildings, to you, would seem terribly small but to us, who aren’t big, they are wonderfully tall. My town is called Who-ville, for I am a Who and we Whos are all thankful and grateful to you.” And Horton called back to the Mayor of the town, “You’re safe now. Don’t worry. I won’t let you down.” ",
     author: "Dr. Seuss",
     origin: "excerpt from <b>Horton Hears a Who</b>",
 },
@@ -40,8 +40,24 @@ plaintext_list = [{
     plaintext: "Mondays or Fridays, it doesn't matter, mornings always go by slow and this day especially. But lunchtime came finally and I got to get in line with the stay-at-school kids. Everything is fine until the nun who knows all the canteen kids by heart looks at me and says: You, who sent you here? And since I am shy, I don't say anything, just hold out my hand with the letter. This is no good, she says, till Sister Superior gives the okay. Go upstairs and see her. And so I went.",
     author:"Sandra Cisneros",
     origin:"excerpt from <b>The House on Mango Street</b>"
+},
+{
+    plaintext: "At a few minutes past the appointed hour Mrs. Trent entered, unannounced. She was a woman of about twenty-eight. She had a white, demure, saintlike face, smooth black hair, and lips so crimson and full that they seemed to be bursting with blood. Her tall, graceful body was most expensively attired. Kisses were exchanged between her and Mrs. Jameson. She bowed to the rest of the assembly, and stole a half glance and a smile at Faull. The latter gave her a queer look, and Backhouse, who lost nothing, saw the concealed barbarian in the complacent gleam of his eye.",
+    author: "David Lindsay",
+    origin: "excerpt from <b>A Voyage to Arcturus</b>",
+    notes: "Courtesy of Diego"
+},
+{
+    plaintext: "He had a rich abundance of idle time, but it never hung heavy on his hands, for he interested himself in every new thing that was born into the universe of ideas, and studied it and experimented upon it at his house. One of his pet fads was palmistry. To another one he gave no name, neither would he explain to anybody what its purpose was, but merely said it was an amusement. In fact, he had found that his fads added to his reputation as a pudd'nhead; therefore he was growing chary of being too communicative about them.",
+    author: "Mark Twain",
+    origin: "excerpt from <b>Pudd'nhead Wilson</b>",
+    notes: "From one of Jay's book collection"
+},
+{
+    plaintext: "She was stretched on her back beneath the pear tree soaking in the alto chant of the visiting bees, the gold of the sun, and the panting breath of the breeze when the inaudible voice of it all came to her. She saw a dust-bearing bee sink into the sanctum of a bloom; the thousand sister-calyxes arch to meet the love embrace and the ecstatic shiver of the tree from root to tiniest branch creaming in every blossom and frothing with delight. So this was marriage! She had been summoned to behold a revelation. Then Janie felt a pain remorseless sweet that left her limp and languid.",
+    author: "Zora Neale Hurston",
+    origin: "excerpt from <b>Their Eyes Were Watching God</b>"
 }
-
 ]
 
 
