@@ -8,7 +8,7 @@
 
 
 function stripString(str){
-    return str.replace(/[^a-zA-Z]\s/g,"").toLowerCase();
+    return str.replace(/[^a-zA-Z\s]/g," ").toLowerCase();
 }
 
 function orderStringByFreq(str){
