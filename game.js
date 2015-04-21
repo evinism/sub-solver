@@ -106,8 +106,9 @@ Game.prototype.swapLetters = function(first, second){
 }
 
 Game.prototype.toggleLock = function(letter){
-    if (letter in this.lockedLetters){
-        this.lockedLetters.replace(letter, '');
+    var index = $.inArray(letter, this.lockedLetters);
+    if (index > -1){
+        this.lockedLetters.splice(index, 1);
     }else{
         this.lockedLetters.push(letter);
     }
