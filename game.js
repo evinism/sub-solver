@@ -1,3 +1,5 @@
+(function(){
+
 /*  For those of you looking at my javascript trying to see how this works:
     This was made VERY QUICKLY with very little foresight or planning
     It is uniformly terrible code. Proceed at your own risk.
@@ -40,30 +42,30 @@ function orderStringByFreq(str){
     return retlist.join("");
 }
 
+//From stackoverflow
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex ;
 
-function Game(){
-    $('#input_dialog').keypress(function(game){ 
-        return function(e){
-            if (e.keyCode == 13) {
-                game.stackPos = -1;//-1 means a new input.
-                game.inputStack.push(this.value);
-                game.parse_input(this.value.toLowerCase());
-                this.value = "";
-            }
-            if (e.keyCode == 38){
-                if (game.inputStack.length>game.stackPos+1){
-                    game.stackPos++;
-                    this.value = game.inputStack[game.inputStack.length - game.stackPos - 1];
-                }
-            }
-            if (e.keyCode == 40){
-                if (game.stackPos>0){
-                    game.stackPos--;
-                    this.value = game.inputStack[game.inputStack.length - game.stackPos - 1];
-                }
-            }
-        }
-    }(this));
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+
+Game = function(){
+    $('#input_dialog').keypress(this.onKeypress(this));
+    this.ciphertext = "";
     this.lockedLetters = [];
     this.inputStack = [];
     this.stackPos = -1;
@@ -72,52 +74,75 @@ function Game(){
     this.displayCipherText();
 }
 
+Game.prototype.onKeypress = function(game){
+    return function(e){
+        if (e.keyCode == 13) {
+            game.stackPos = -1;//-1 means a new input.
+            game.inputStack.push(this.value);
+            game.parse_input(this.value.toLowerCase());
+            this.value = "";
+        }
+        if (e.keyCode == 38){
+            if (game.inputStack.length>game.stackPos+1){
+                game.stackPos++;
+                this.value = game.inputStack[game.inputStack.length - game.stackPos - 1];
+            }
+        }
+        if (e.keyCode == 40){
+            if (game.stackPos>0){
+                game.stackPos--;
+                this.value = game.inputStack[game.inputStack.length - game.stackPos - 1];
+            }
+        }
+    };
+}
+
+Game.prototype.swapLetters = function(first, second){
+    this.ciphertext = this.ciphertext.split("").map(function(letter){
+        if ( letter==first ){ return second; }
+        if ( letter==second ){ return first; }
+        return letter;
+    }).join("");
+}
+
+Game.prototype.toggleLock = function(letter){
+    if (letter in this.lockedLetters){
+        this.lockedLetters.replace(letter, '');
+    }else{
+        this.lockedLetters.push(letter);
+    }
+}
+
+Game.prototype.isLocked = function(letter) {
+    return $.inArray(letter, this.lockedLetters) > -1;
+};
+
 Game.prototype.parse_input = function(input){
     //For standard inputs.
     if (input=="random"){
         this.startNewGame();
-        return;
     }else if (input=="clear"){
         this.clear();
-        return;
     }else if (input=="reset"){
-        if (this.started){
-            this.ciphertext = this.orig;
-            this.lockedLetters = []
-            this.displayCipherText();
-        }
+        this.resetGame();
     }else if (input=="help"){
         this.append("<p>The objective is to obtain the encoded English phrase by swapping letters in the ciphertext, from which all punctuation and whitespace has been removed. To swap letters, type in any two letters.</p><p><b>Example:</b> To swap T and D, type \"<b>td</b>\" and press <b>enter</b>.</p><p>If you are sure of a letter, you can lock it in by typing a letter, followed by a space.</p><p><b>Example:</b> To lock in T, type in \"<b>t </b>\" and press <b>Enter</b></p><p>For those looking already beginning to count letter frequencies, worry not, the naive frequency analysis portion of the puzzle has been done for you. Even so, this is not meant to be an easy puzzle.</p>")
     //For standard swaps:
-    }else if (input.length==2 && input.match(/\w\w/)){
-        if (this.started){
-            //console.log(input);
-            var re = new RegExp("["+input+"]","g");
-            if(this.lockedLetters.join("").search(re)>=0){
-                this.displayCipherText();
-                this.append("Can't swap; One or more of the letters is locked");
-            }else{
-                this.ciphertext = this.ciphertext.replace(re, function(x){if(x==input[0]) return input[1]; return input[0];});
-                if(this.ciphertext == this.strippedItem){
-                    this.triggerWin();
-                }else{
-                    this.displayCipherText();
-                }
-            }         
-
+    }else if (input.match(/^[a-zA-Z]{2}$/)){
+        if (this.isLocked(input[0]) || this.isLocked(input[1])){
+            this.displayCipherText();
+            this.append("Can't swap; one or more of the letters is locked.");
         }else{
-            this.append("Begin a new game to start swapping letters<br>");
+            this.swapLetters(input[0], input[1]);
+            if (this.ciphertext == this.strippedItem){
+                this.triggerWin();
+            }else{
+                this.displayCipherText();
+            }
         }
     //For locking letters
-    }else if (input.length==2 && input.match(/\w\s/)){
-        console.log("Locking letters");
-        var toLock = input[0];
-        pos = this.lockedLetters.join("").search(toLock);
-        if( pos>=0 ){
-            this.lockedLetters.splice(pos,"1");
-        }else{
-            this.lockedLetters.push(toLock);
-        }
+    }else if (input.match(/^\w $/)){
+        this.toggleLock(input[0]);
         this.displayCipherText();
     }else{
         this.displayCipherText();
@@ -130,6 +155,7 @@ Game.prototype.displayCipherText = function(){
         this.display("Type in <b>random</b> to begin, or <b>help</b> for a brief introduction<hr>");
         return;
     }
+
     baseStr = []
     baseStr.push("<span id=\"ctext\">");
     for (var i=0; i<this.ciphertext.length; i++){
@@ -142,7 +168,6 @@ Game.prototype.displayCipherText = function(){
     baseStr.push("</span>");
     baseStr.push("<hr>");
     this.display(baseStr.join(""));
-
 }
 
 
@@ -156,6 +181,14 @@ Game.prototype.append = function(output){
 
 Game.prototype.clear = function(){
     this.display("cleared");
+}
+
+Game.prototype.resetGame = function(){
+    if (this.started){
+        this.ciphertext = this.orig;
+        this.lockedLetters = []
+        this.displayCipherText();
+    }
 }
 
 Game.prototype.startNewGame = function(){
@@ -189,27 +222,8 @@ Game.prototype.triggerWin = function(){
 
 
 $(document).ready(function(){
-    game = new Game();
+    window.game = new Game();
     console.log("loaded");
 });
 
-
-//From stackoverflow
-function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex ;
-
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
-
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-
-  return array;
-}
+})();
