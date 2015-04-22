@@ -57,6 +57,16 @@ plaintext_list = [{
     plaintext: "She was stretched on her back beneath the pear tree soaking in the alto chant of the visiting bees, the gold of the sun, and the panting breath of the breeze when the inaudible voice of it all came to her. She saw a dust-bearing bee sink into the sanctum of a bloom; the thousand sister-calyxes arch to meet the love embrace and the ecstatic shiver of the tree from root to tiniest branch creaming in every blossom and frothing with delight. So this was marriage! She had been summoned to behold a revelation. Then Janie felt a pain remorseless sweet that left her limp and languid.",
     author: "Zora Neale Hurston",
     origin: "excerpt from <b>Their Eyes Were Watching God</b>"
+},
+{
+    plaintext: "The scientific soul of matter, its irreducible essence, was mass/ Mass defined matter's resistance to motion, its inertia. Mass was unchangeable, \"conserved.\" It could be transferred from one body to another but could never be gained or lost. For Newton, mass defined quality of matter. In Newton's physics, mass provided the link between force and motion, and it provided the source of gravity. For Lavoisier, the persistence of mass, its accurate conservation, provided the foundation of chem}istry and offered a fruitful guide to discovery. If mass seems to disappear, look for it in new forms",
+    author: "Frank Wilczek",
+    origin: "excerpt from <b>The Lightness of Being</b>"
+},
+{
+    plaintext: "It seems probable to me, that God in the beginning formed matter in solid, massy, hard, impenetrable, moveable particles, of such sizes and figures, and with such other properties, and in such proportions to space, as most conducted to the ends for which He formed them; and that these primitive particles being solids, are incomparably harder than any porous bodies compounded of them, even so very hard, as never to wear or break in pieces; no ordinary power being able to divide what God Himself made one in the first creation.",
+    author: "Sir Issac Newton",
+    origin: "excerpt from <b>Opticks</b>"
 }
 ]
 
