@@ -76,9 +76,10 @@ Game = function(){
     //Extract unsolved games
     this.session_plaintext_list = [];
     for (var i=0; i<plaintext_list.length; i++){
-        var gameId = plaintext_list[i].id;
+        var elem = plaintext_list[i]
+        var gameId = elem.id;
         if ($.inArray(gameId, this.solvedIdList) < 0){
-            this.session_plaintext_list.push(plaintext_list[i]);
+            this.session_plaintext_list.push(elem);
         }
     }
     this.session_plaintext_list = shuffle(this.session_plaintext_list);
@@ -133,6 +134,30 @@ Game.prototype.swapLetters = function(first, second){
     }).join("");
 }
 
+Game.prototype.toggleLockByList = function(list){
+    // Err towards locking rather than unlocking the list.
+    // ie, if some letters are locked and some are unlocked, lock them all.
+
+    //Lock all elements and keep track (needs refactoring)
+    var lockedElemsExist = false;
+    var unlockedElemsExist = false;
+    for (var i in list){
+        var elem = list[i];
+        if (!this.isLocked(elem)){
+            unlockedElementsExist = true;
+            this.toggleLock(elem);
+        }else{
+            lockedElemsExist = true;
+        }
+    }
+    if (lockedElemsExist && !unlockedElemsExist){
+        for (var i in list){
+            var elem = list[i];
+            this.toggleLock(elem);
+        }
+    }
+}
+
 Game.prototype.toggleLock = function(letter){
     var index = $.inArray(letter, this.lockedLetters);
     if (index > -1){
@@ -160,7 +185,7 @@ Game.prototype.parse_input = function(input){
         this.saveState();
         this.append("Savegame deleted");
     }else if (input=="help"){
-        this.append("<p>The objective is to obtain the encoded English phrase by swapping letters in the ciphertext, from which all punctuation has been removed. To swap letters, type in any two letters.</p><p><b>Example:</b> To swap T and D, type \"<b>tb</b>\" and press <b>enter</b>.</p><p>If you are sure of a letter, you can lock it in by typing a letter, followed by a space.</p><p><b>Example:</b> To lock in T, type in \"<b>t </b>\" and press <b>Enter</b></p><p>To reset the game back to the beginning of the puzzle, type in <b>reset</b> and press enter.</p><p>For those looking already beginning to count letter frequencies, worry not, the naive frequency analysis portion of the puzzle has been done for you. Even so, this is not meant to be an easy puzzle.</p>")
+        this.append("<p>The objective is to obtain the encoded English phrase by swapping letters in the ciphertext, from which all punctuation has been removed. To swap letters, type in any two letters.</p><p><b>Example:</b> To swap T and D, type \"<b>td</b>\" and press <b>enter</b>.</p><p>If you are sure of a letter, you can lock it in by typing one or more letters, followed by a space.</p><p><b>Example:</b> To lock in T and D, type in \"<b>td </b>\" and press <b>Enter</b></p><p>To reset the game back to the beginning of the puzzle, type in <b>reset</b> and press enter.</p><p>For those looking already beginning to count letter frequencies, worry not, the naive frequency analysis portion of the puzzle has been done for you. Even so, this is not meant to be an easy puzzle.</p>")
     //For standard swaps:
     }else if (input.match(/^[a-zA-Z]{2}$/)){
         if (this.isLocked(input[0]) || this.isLocked(input[1])){
@@ -175,8 +200,10 @@ Game.prototype.parse_input = function(input){
             }
         }
     //For locking letters
-    }else if (input.match(/^\w $/)){
-        this.toggleLock(input[0]);
+    }else if (input.match(/^\w+ $/)){
+        var list = input.split("");
+        list.pop();//remove the whitespace
+        this.toggleLockByList(list);
         this.displayCipherText();
     }else{
         this.displayCipherText();
@@ -193,7 +220,7 @@ Game.prototype.displayCipherText = function(){
     baseStr = []
     baseStr.push("<span id=\"ctext\">");
     for (var i=0; i<this.ciphertext.length; i++){
-        if (this.lockedLetters !=[] && (this.lockedLetters.join("").search(this.ciphertext[i])>= 0)){
+        if (this.isLocked(this.ciphertext[i])){
             baseStr.push("<span class=\"hlight\">"+this.ciphertext[i]+"</span>");
         }else{
             baseStr.push(this.ciphertext[i]);
@@ -234,7 +261,7 @@ Game.prototype.startNewGame = function(){
     this.currentItem = this.session_plaintext_list.pop();
     if(!this.currentItem){
         if (this.solvedIdList.length == plaintext_list.length){
-            this.display("All games solved. Type in the command <b>expunge</b> to destroy your saved game.<hr>");
+            this.display("Congratulations! All games solved. Type in the command <b>expunge</b> to destroy your saved game.<hr>");
         }else{
             this.display("No more games remain. Refresh the page to start from the beginning, or type in the command <b>expunge</b> to destroy your saved game.<hr>");
         }
