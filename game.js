@@ -1,9 +1,7 @@
 (function(){
 
-/*  For those of you looking at my javascript trying to see how this works:
-    This was made VERY QUICKLY with very little foresight or planning
-    It is uniformly terrible code. Proceed at your own risk.
-    
+/*  
+    Everything is javascript, giving you ample opportunity to cheat.
     Happy Hacking,
     - Evin
 */
@@ -65,13 +63,43 @@ function shuffle(array) {
 
 Game = function(){
     $('#input_dialog').keypress(this.onKeypress(this));
+    //initial game values:
     this.ciphertext = "";
     this.lockedLetters = [];
     this.inputStack = [];
     this.stackPos = -1;
     this.started = false;
-    plaintext_list = shuffle(plaintext_list);
+    //Load the saved progress.
+    this.retrieveState();
+    this.updateCounter();
+
+    //Extract unsolved games
+    this.session_plaintext_list = [];
+    for (var i=0; i<plaintext_list.length; i++){
+        var gameId = plaintext_list[i].id;
+        if ($.inArray(gameId, this.solvedIdList) < 0){
+            this.session_plaintext_list.push(plaintext_list[i]);
+        }
+    }
+    this.session_plaintext_list = shuffle(this.session_plaintext_list);
+
     this.displayCipherText();
+}
+
+
+//Save your progress to cookies--
+Game.prototype.retrieveState = function(){
+    var cookieVal = $.cookie("solvedIdList");
+    if (!cookieVal){
+        this.solvedIdList = [];
+    }else{
+        this.solvedIdList = cookieVal.split(",");
+    }
+}
+
+Game.prototype.saveState = function(){
+    var cookieVal = this.solvedIdList.join(",");
+    $.cookie("solvedIdList", cookieVal, { expires : 60 });
 }
 
 Game.prototype.onKeypress = function(game){
@@ -126,6 +154,11 @@ Game.prototype.parse_input = function(input){
         this.clear();
     }else if (input=="reset"){
         this.resetGame();
+    }else if (input=="expunge"){
+        this.solvedIdList = [];
+        this.updateCounter();
+        this.saveState();
+        this.append("Savegame deleted");
     }else if (input=="help"){
         this.append("<p>The objective is to obtain the encoded English phrase by swapping letters in the ciphertext, from which all punctuation has been removed. To swap letters, type in any two letters.</p><p><b>Example:</b> To swap T and D, type \"<b>tb</b>\" and press <b>enter</b>.</p><p>If you are sure of a letter, you can lock it in by typing a letter, followed by a space.</p><p><b>Example:</b> To lock in T, type in \"<b>t </b>\" and press <b>Enter</b></p><p>To reset the game back to the beginning of the puzzle, type in <b>reset</b> and press enter.</p><p>For those looking already beginning to count letter frequencies, worry not, the naive frequency analysis portion of the puzzle has been done for you. Even so, this is not meant to be an easy puzzle.</p>")
     //For standard swaps:
@@ -180,6 +213,10 @@ Game.prototype.append = function(output){
     $("#response").append(output+"<br>");
 }
 
+Game.prototype.updateCounter = function(){
+    $("#counter").html(this.solvedIdList.length+"/"+plaintext_list.length+" solved");
+}
+
 Game.prototype.clear = function(){
     this.display("cleared");
 }
@@ -194,9 +231,13 @@ Game.prototype.resetGame = function(){
 
 Game.prototype.startNewGame = function(){
     this.started = true;
-    this.currentItem = plaintext_list.pop();
+    this.currentItem = this.session_plaintext_list.pop();
     if(!this.currentItem){
-        this.display("No more games remain. Refresh to start from the beginning.<hr>");
+        if (this.solvedIdList.length == plaintext_list.length){
+            this.display("All games solved. Type in the command <b>expunge</b> to destroy your saved game.<hr>");
+        }else{
+            this.display("No more games remain. Refresh the page to start from the beginning, or type in the command <b>expunge</b> to destroy your saved game.<hr>");
+        }
         return;
     }
     this.lockedLetters = [];
@@ -209,6 +250,11 @@ Game.prototype.startNewGame = function(){
 
 Game.prototype.triggerWin = function(){
     this.lockedLetters = [];
+    if ($.inArray(this.currentItem.id, this.solvedIdList) < 0){
+        this.solvedIdList.push(this.currentItem.id);
+    }
+    this.saveState();
+    this.updateCounter();
     this.displayCipherText();
     this.max_spacing = 0;
     this.cur_spacing = -1;
@@ -219,6 +265,7 @@ Game.prototype.triggerWin = function(){
     }).animate({'opacity': 1}, 1000, function () {
         g.append("<div style=\"width: 100%;text-align: right;\"><b> - "+g.currentItem.author+"</b><br>"+g.currentItem.origin+"</div>Type in <b>Random</b> for another game.");
         g.started = false;
+        
     });
 }
 

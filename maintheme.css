@@ -4,6 +4,20 @@
     margin-right:auto;
 }
 
+#title{
+    /*float: left;*/
+    display: inline;
+}
+
+#counter{
+    float: right;
+    display: inline;
+}
+
+#title_container hr{
+    /*display:inline;*/
+}
+
 #ctext{
     word-wrap:break-word;
     font-family: 'Oxygen Mono';
