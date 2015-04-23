@@ -199,6 +199,7 @@ Game.prototype.startNewGame = function(){
         this.display("No more games remain. Refresh to start from the beginning.<hr>");
         return;
     }
+    this.lockedLetters = [];
     this.strippedItem = stripString(this.currentItem.plaintext);
     this.orig = orderStringByFreq(this.strippedItem);
     this.ciphertext = this.orig;
