@@ -71,7 +71,20 @@ plaintext_list = [{
 {
     plaintext: "Lo-lee-ta: the tip of the tongue taking a trip of three steps down the palate to tap, at three, on the teeth. Lo. Lee. Ta. She was Lo, plain Lo, in the morning, standing four feet ten in one sock. She was Lola in slacks. She was Dolly at school. She was Dolores on the dotted line. But in my arms she was always Lolita. Did she have a precursor? She did, indeed she did. In point of fact, there might have been no Lolita at all had I not loved, one summer, an initial girl-child. In a princedom by the sea. Oh when? About as many years before Lolita was born as my age was that summer. You can always count on a murderer for a fancy prose style. Ladies and gentlemen of the jury, exhibit number one is what the seraphs, the misinformed, simple, noble-winged seraphs, envied. Look at this tangle of thorns.",
     author: "Vladimir Nabokov",
-    origin: "excerpt from <b>Lolita</b>"
+    origin: "excerpt from <b>Lolita</b>",
+    notes: "Courtesy of /u/double-indemnity from Reddit."
+},
+{
+    plaintext: "Until a man is twenty-five, he still thinks, every so often, that under the right circumstances he could be the baddest motherfucker in the world. If I moved to a martial-arts monastery in China and studied real hard for ten years. If my family was wiped out by Colombian drug dealers and I swore myself to revenge. If I got a fatal disease, had one year to live, and devoted it to wiping out street crime. If I just dropped out and devoted my life to being bad. Hiro used to feel this way, too, but then he ran into Raven. In a way, this was liberating. He no longer has to worry about being the baddest motherfucker in the world. The position is taken.",
+    author: "Neal Stephenson",
+    origin: "excerpt from <b>Snowcrash</b>",
+    notes: "Courtesy of /u/paiaw, from the top of /r/excerpts"
+},
+{
+    plaintext: "I wanted so badly to lie down next to her on the couch, to wrap my arms around her and sleep. Not fuck, like in those movies. Not even have sex. Just sleep together, in the most innocent sense of the phrase. But I lacked the courage and she had a boyfriend and I was gawky and she was gorgeous and I was hopelessly boring and she was endlessly fascinating. So I walked back to my room and collapsed on the bottom bunk, thinking that if people were rain, I was drizzle and she was hurricane.",
+    author: "John Green",
+    origin: "excerpt from <b>Looking for Alaska</b>",
+    notes: "Courtesy of /u/extrachange from the top of /r/bookquotes"
 }
 ]
 
