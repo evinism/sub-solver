@@ -101,8 +101,28 @@ plaintext_list = [{
     author: "John Green",
     origin: "excerpt from <b>Looking for Alaska</b>",
     notes: "Courtesy of /u/extrachange from the top of /r/bookquotes"
+},
+{
+    id: "16",
+    plaintext: "In  the  specifc  context  of  the  Rock - Paper - Scissors game,  the  replicator  equations  are  most  often  studied in the absence of mutation.  The dynamics in that case tend to exhibit one of three types of long-term behavior,  depending  on  a  parameter that  characterizes  how  far  the  game  is  from  being  a  zero-sum  game. The three types of behavior are:  (1) stable coexistence of all three species, (2) neutrally stable cycles that fill the whole state space, and (3) large-amplitude heteroclinic cycles in which each species in turn almost takes over the whole population and then almost goes extinct.",
+    author: "Danielle  F.  P.  Toupo  and  Steven  H.  Strogatz",
+    origin: "excerpt from the paper <b>Nonlinear Dynamics of the Rock-Paper-Scissors Game with Mutations</b>",
+    notes: "Jenette's suggestion"
+},
+{
+    id: "17",
+    plaintext: "\"Fool, prate not to me about covenants. There can be no covenants between men and lions, wolves and lambs can never be of one mind, but hate each other out and out and through. Therefore there can be no understanding between you and me, nor may there be any covenants between us, till one or other shall fall and glut grim Mars with his life's blood. Put forth all your strength; you have need now to prove yourself indeed a bold soldier and man of war. You have no more chance, and Pallas Minerva will forthwith vanquish you by my spear: you shall now pay me in full for the grief you have caused me on account of my comrades whom you have killed in battle.\"",
+    author: "Homer",
+    origin: "excerpt from <b>The Iliad</b>, Samuel Butler translation"
+},
+{
+    id: "18",
+    plaintext: "When you're young, psychadelic is a primary color and a most mesmerizing high. Santa Monica was full of free multihued trips. The color-burst free love murals on Main Street seemed to come to vibrant cartoon life when I passed them. The whales and dolphins frolicked in the clouds and the sea lions and merry-go-round horsies turned cartwheels in the street. The spray - any - color - paint - on - the - spin - art creations at the pier were fifty-cent Jackson Pollock rainbow heroin hits that made your skin tingle and the grains of sand swell up and rise to the sky like helium balloons. Looking into the kaleidoscopic eyes of a scruffy Bukowski barfly sitting in the lotus position along with the bkie trails fractured your soul into hundreds of disconnected psychedelic shards. Each sharp piece of your mind begging for sobriety.",
+    author: "Paul Beatty",
+    origin: "excerpt from <b>The White Boy Shuffle</b>"
 }
 ]
+
 
 
 
