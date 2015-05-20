@@ -6,10 +6,26 @@
     - Evin
 */
 
-
 function stripString(str){
     return str.replace(/[^a-zA-Z\s]/g,"").toLowerCase();
 }
+
+var helpText = "<p>The objective is to obtain the encoded English phrase by swapping letters in the ciphertext, from which all punctuation has been removed. Swapping two letters swaps them globally-- that is, every instance of letter 1 is replaced by letter 2 and vice versa. To swap letters, type in any two letters.</p><p><b>Example:</b> To swap T and D, type \"<b>td</b>\" and press <b>enter</b>.</p><p>If you are sure of a letter, you can lock it in by typing that letter, followed by a space. A locked letter cannot be swapped. A previously locked letter can be unlocked with the same command.</p><p><b>Example:</b> To lock in T, type in \"<b>t </b>\" and press <b>Enter</b></p><p>To bring up a list of commands, type in <b>commands</b> and press enter.</p><p>For those looking already beginning to count letter frequencies, worry not, the naive frequency analysis portion of the puzzle has been done for you. Even so, this is not meant to be an easy puzzle.</p>";
+
+var commandText = "\
+Commands:<br><br>\
+<table>\
+ <tr><td>[Two letters]</td><td>Swaps two letters in the current game. See <b>help</b> for an example</td></tr>\
+ <tr><td>[Letter, followed by space]</td><td>Locks/unlocks a letter in the current game. See <b>help</b> for an example</td></tr>\
+ <tr><td><b>random</b></td><td>Begins a random game from the list of unsolved games</td></tr>\
+ <tr><td><b>clear</b></td><td>Clears the screen</td></tr>\
+ <tr><td><b>reset</b></td><td>Returns the current game to the initial state(where the game was when it began)</td></tr>\
+ <tr><td><b>expunge</b></td><td>Deletes your current saved game</td></tr>\
+ <tr><td><b>help</b></td><td>Displays the help text</td></tr>\
+ <tr><td><b>commands</b></td><td>Displays the command list</td></tr>\
+</table>\
+";
+
 
 function orderStringByFreq(str){
     var order = "etaoinshrdlcumwfgypbvkjxqz";
@@ -176,7 +192,7 @@ Game.prototype.parse_input = function(input){
     if (input=="random"){
         this.startNewGame();
     }else if (input=="clear"){
-        this.clear();
+        this.displayCipherText();
     }else if (input=="reset"){
         this.resetGame();
     }else if (input=="expunge"){
@@ -185,7 +201,9 @@ Game.prototype.parse_input = function(input){
         this.saveState();
         this.append("Savegame deleted");
     }else if (input=="help"){
-        this.append("<p>The objective is to obtain the encoded English phrase by swapping letters in the ciphertext, from which all punctuation has been removed. To swap letters, type in any two letters.</p><p><b>Example:</b> To swap T and D, type \"<b>td</b>\" and press <b>enter</b>.</p><p>If you are sure of a letter, you can lock it in by typing that letter, followed by a space.</p><p><b>Example:</b> To lock in T, type in \"<b>t </b>\" and press <b>Enter</b></p><p>To reset the game back to the beginning of the puzzle, type in <b>reset</b> and press enter.</p><p>For those looking already beginning to count letter frequencies, worry not, the naive frequency analysis portion of the puzzle has been done for you. Even so, this is not meant to be an easy puzzle.</p>")
+        this.append(helpText);
+    }else if (input=="commands"){
+        this.append(commandText);
     //For standard swaps:
     }else if (input.match(/^[a-zA-Z]{2}$/)){
         if (this.isLocked(input[0]) || this.isLocked(input[1])){
