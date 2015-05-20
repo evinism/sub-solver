@@ -32,7 +32,7 @@ plaintext_list = [{
 },
 {
     id: "5",
-    plaintext: "Medicine-as-commerce is at the heart of each of these stories just as it is at the heart of some of the good trends and most of the bad ones. It is clear enough that biotech and pharmaceutical firms can work miracles. But it is also true that they can lean heavily on public funding and end up making a great deal of private profit. Even more troublesome are the rapidly growing investor-owned health plans. They go under many names, including health-mantenance organizations. Although some of these are not-for-profit, many have in common a basic strategy: selling \"Product\" to \"Consumers\" rather than providing care to patients.",
+    plaintext: "Medicine-as-commerce is at the heart of each of these stories just as it is at the heart of some of the good trends and most of the bad ones. It is clear enough that biotech and pharmaceutical firms can work miracles. But it is also true that they can lean heavily on public funding and end up making a great deal of private profit. Even more troublesome are the rapidly growing investor-owned health plans. They go under many names, including health-maintenance organizations. Although some of these are not-for-profit, many have in common a basic strategy: selling \"Product\" to \"Consumers\" rather than providing care to patients.",
     author: "Paul Farmer",
     origin: "excerpt from <b>Pathologies of Power</b>"
 },
@@ -104,7 +104,7 @@ plaintext_list = [{
 },
 {
     id: "16",
-    plaintext: "In  the  specifc  context  of  the  Rock - Paper - Scissors game,  the  replicator  equations  are  most  often  studied in the absence of mutation.  The dynamics in that case tend to exhibit one of three types of long-term behavior,  depending  on  a  parameter that  characterizes  how  far  the  game  is  from  being  a  zero-sum  game. The three types of behavior are:  (1) stable coexistence of all three species, (2) neutrally stable cycles that fill the whole state space, and (3) large-amplitude heteroclinic cycles in which each species in turn almost takes over the whole population and then almost goes extinct.",
+    plaintext: "In  the  specific  context  of  the  Rock - Paper - Scissors game,  the  replicator  equations  are  most  often  studied in the absence of mutation.  The dynamics in that case tend to exhibit one of three types of long-term behavior,  depending  on  a  parameter that  characterizes  how  far  the  game  is  from  being  a  zero-sum  game. The three types of behavior are:  (1) stable coexistence of all three species, (2) neutrally stable cycles that fill the whole state space, and (3) large-amplitude heteroclinic cycles in which each species in turn almost takes over the whole population and then almost goes extinct.",
     author: "Danielle  F.  P.  Toupo  and  Steven  H.  Strogatz",
     origin: "excerpt from the paper <b>Nonlinear Dynamics of the Rock-Paper-Scissors Game with Mutations</b>",
     notes: "Jenette's suggestion"
