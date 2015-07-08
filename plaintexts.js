@@ -120,6 +120,18 @@ plaintext_list = [{
     plaintext: "When you're young, psychedelic is a primary color and a most mesmerizing high. Santa Monica was full of free multihued trips. The color-burst free love murals on Main Street seemed to come to vibrant cartoon life when I passed them. The whales and dolphins frolicked in the clouds and the sea lions and merry-go-round horsies turned cartwheels in the street. The spray - any - color - paint - on - the - spin - art creations at the pier were fifty-cent Jackson Pollock rainbow heroin hits that made your skin tingle and the grains of sand swell up and rise to the sky like helium balloons. Looking into the kaleidoscopic eyes of a scruffy Bukowski barfly sitting in the lotus position along with the bike trails fractured your soul into hundreds of disconnected psychedelic shards. Each sharp piece of your mind begging for sobriety.",
     author: "Paul Beatty",
     origin: "excerpt from <b>The White Boy Shuffle</b>"
+},
+{
+	id: "19",
+	plaintext: "Inside this box are crisp, versatile, little crackers with surprising big flavor. Why surprising? Because they have fifty percent less fat than our original Woven Wheats Wafers. That's why we call them Reduced Guilt. But really, a reduced fat snack still has to deliver on flavor and texture, right? This one does. And then some. Try right out of the box, topped with cheese, or as an accompaniment for soups or salad.",
+	author: "Trader Joe's",
+	origin: "excerpt from a box of <b>Woven Wheats Wafers</b>"
+},
+{
+	id: "20",
+	plaintext: "We have found that two kinds of people exist in the world: those who accept the nonsensical and reinforced views of the masses, bowing attentively and unabashedly to its whims, without concern for the ultimate and inevitable ramifications of their mindless submission; and you. You, the thoughtful, intelligent, questioning, sentient being who is awakened and enlightened to the whirlwind of events and ideas about him while standing firm against the onslaught of skewed political ideologies and jaded personal agendas that pound against our doors of sensibility day in and day out, testing the integrity of the deadbolt we have named our freedom to think independently.",
+	author: "the IHateCilantro.com staff",
+	origin: "excerpt from the 'About' page of <b>IHateCilantro.com</b>"
 }
 ]
 
