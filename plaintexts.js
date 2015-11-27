@@ -132,6 +132,24 @@ plaintext_list = [{
 	plaintext: "We have found that two kinds of people exist in the world: those who accept the nonsensical and reinforced views of the masses, bowing attentively and unabashedly to its whims, without concern for the ultimate and inevitable ramifications of their mindless submission; and you. You, the thoughtful, intelligent, questioning, sentient being who is awakened and enlightened to the whirlwind of events and ideas about him while standing firm against the onslaught of skewed political ideologies and jaded personal agendas that pound against our doors of sensibility day in and day out, testing the integrity of the deadbolt we have named our freedom to think independently.",
 	author: "the IHateCilantro.com staff",
 	origin: "excerpt from the 'About' page of <b>IHateCilantro.com</b>"
+},
+{
+	id: "21",
+	plaintext: "Your vehicle is equipped with \"all season tires\" which are designed to provide an adequate measure of traction, handling, and braking performance in year-round driving. In winter, it may be possible to enhance performance through use of tires designed specifically for winter driving. If you choose to install winter tires on your vehicle, be sure to use the same tire size, construction, brand, and load range as the original tires.",
+	author: "Fuji Heavy Industries, LTD.",
+	origin: "excerpt from the <b>Subaru Impreza 1997 Owner's Manual</b>"
+},
+{
+	id: "22",
+	plaintext: "I made a mechanical dragon \nOf bottle tops, hinges, and string, <br>Of thrown away clocks and unmendable socks, <br>Of hangers and worn innersprings. \nI built it of cardboard and plastic, <br>Of doorknobs and cables and corks, <br>Of spools and balloons and unusable spoons, <br>And rusty old shovels and forks. It's quite an unusual dragon <br>It rolls on irregular wheels, <br>It clatters and creaks and it rattles and squeaks, <br>And when it tips over, it squeals. <br>I've tried to control its maneuvers, <br>It fails to obey my commands, <br>It bumps into walls till it totters and falls <br>I made it myself with my hands!",
+	author: "Jack Prelutsky",
+	origin: "poem from <b>The Dragons are Singing Tonight"
+},
+{
+	id: "23",
+	plaintext: "He never looked better, nor had he been loved more, nor had the breeding of his animals been wilder. There was a slaughtering of so many cows, pigs, and chickens for the endless parties that the ground in the courtyard turned black and muddy with so much blood. It was an eternal execution ground of bones and innards, a mud pit of leftovers, and they had to keep exploding dynamite bombs all the time so that the buzzards would not pluck out the guests' eyes",
+	author: "Gabriel García Márquez",
+	origin: "excerpt from <b>One Hundred Years of Solitude</b>"
 }
 ]
 

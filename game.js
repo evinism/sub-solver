@@ -7,7 +7,7 @@
 */
 
 function stripString(str){
-    return str.replace(/[^a-zA-Z\s]/g,"").toLowerCase();
+    return str.replace(/<[^>]*>/g,"").replace(/[^a-zA-Z\s]/g,"").toLowerCase();
 }
 
 var helpText = "<p>The objective is to obtain the encoded English phrase by swapping letters in the ciphertext, from which all punctuation has been removed. Swapping two letters swaps them globally-- that is, every instance of letter 1 is replaced by letter 2 and vice versa. To swap letters, type in any two letters.</p><p><b>Example:</b> To swap T and D, type \"<b>td</b>\" and press <b>enter</b>.</p><p>If you are sure of a letter, you can lock it in by typing that letter, followed by a space. A locked letter cannot be swapped. A previously locked letter can be unlocked with the same command.</p><p><b>Example:</b> To lock in T, type in \"<b>t </b>\" and press <b>Enter</b></p><p>To bring up a list of commands, type in <b>commands</b> and press enter.</p><p>For those looking already beginning to count letter frequencies, worry not, the naive frequency analysis portion of the puzzle has been done for you. Even so, this is not meant to be an easy puzzle.</p>";
@@ -18,6 +18,7 @@ Commands:<br><br>\
  <tr><td>[Two letters]</td><td>Swaps two letters in the current game. See <b>help</b> for an example</td></tr>\
  <tr><td>[Letter, followed by space]</td><td>Locks/unlocks a letter in the current game. See <b>help</b> for an example</td></tr>\
  <tr><td><b>random</b></td><td>Begins a random game from the list of unsolved games</td></tr>\
+ <tr><td><b>load [id]</b></td><td>Begins a game with the specified id.</td></tr>\
  <tr><td><b>clear</b></td><td>Clears the screen</td></tr>\
  <tr><td><b>reset</b></td><td>Returns the current game to the initial state(where the game was when it began)</td></tr>\
  <tr><td><b>expunge</b></td><td>Deletes your current saved game</td></tr>\
@@ -191,6 +192,13 @@ Game.prototype.parse_input = function(input){
     //For standard inputs.
     if (input=="random"){
         this.startNewGame();
+    }else if(input.match(/load.*/)){
+        var id = input.split(" ").slice(1).join(" ");
+        if(id.length<1){
+            this.append("Usage: <b>load [id]</b>");
+        }else{
+            this.loadGame(id);
+        }
     }else if (input=="clear"){
         this.displayCipherText();
     }else if (input=="reset"){
@@ -275,6 +283,22 @@ Game.prototype.resetGame = function(){
     }
 }
 
+Game.prototype.loadGame = function(id){
+    this.started = true;
+    curText = plaintext_list.filter(function(i){return i.id == id});
+    if(curText.length<1){
+        this.append("Game with id "+id+" couldn't be found.");
+        return;
+    }
+    this.currentItem = curText[0];
+    this.lockedLetters = [];
+    this.strippedItem = stripString(this.currentItem.plaintext);
+    this.orig = orderStringByFreq(this.strippedItem);
+    this.ciphertext = this.orig;
+    this.cur_spacing = -1;
+    this.displayCipherText();
+}
+
 Game.prototype.startNewGame = function(){
     this.started = true;
     this.currentItem = this.session_plaintext_list.pop();
@@ -307,7 +331,7 @@ Game.prototype.triggerWin = function(){
     var newText = this.currentItem.plaintext;
     var g = this;
     $('#ctext').animate({'opacity': 0}, 1000, function () {
-            $(this).text(newText);
+            $(this).html(newText);
     }).animate({'opacity': 1}, 1000, function () {
         g.append("<div style=\"width: 100%;text-align: right;\"><b> - "+g.currentItem.author+"</b><br>"+g.currentItem.origin+"</div>Type in <b>Random</b> for another game.");
         g.started = false;
