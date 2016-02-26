@@ -113,11 +113,11 @@ plaintext_list = [{
     id: "17",
     plaintext: "\"Fool, prate not to me about covenants. There can be no covenants between men and lions, wolves and lambs can never be of one mind, but hate each other out and out and through. Therefore there can be no understanding between you and me, nor may there be any covenants between us, till one or other shall fall and glut grim Mars with his life's blood. Put forth all your strength; you have need now to prove yourself indeed a bold soldier and man of war. You have no more chance, and Pallas Minerva will forthwith vanquish you by my spear: you shall now pay me in full for the grief you have caused me on account of my comrades whom you have killed in battle.\"",
     author: "Homer",
-    origin: "excerpt from <b>The Iliad</b>, Samuel Butler translation"
+    origin: "excerpt from <b>The Iliad</b>, translated by Samuel Butler"
 },
 {
     id: "18",
-    plaintext: "When you're young, psychedelic is a primary color and a most mesmerizing high. Santa Monica was full of free multihued trips. The color-burst free love murals on Main Street seemed to come to vibrant cartoon life when I passed them. The whales and dolphins frolicked in the clouds and the sea lions and merry-go-round horsies turned cartwheels in the street. The spray - any - color - paint - on - the - spin - art creations at the pier were fifty-cent Jackson Pollock rainbow heroin hits that made your skin tingle and the grains of sand swell up and rise to the sky like helium balloons. Looking into the kaleidoscopic eyes of a scruffy Bukowski barfly sitting in the lotus position along with the bike trails fractured your soul into hundreds of disconnected psychedelic shards. Each sharp piece of your mind begging for sobriety.",
+    plaintext: "When you're young, psychedelic is a primary color and a most mesmerizing high. Santa Monica was full of free multihued trips. The color-burst free love murals on Main Street seemed to come to vibrant cartoon life when I passed them. The whales and dolphins frolicked in the clouds and the sea lions and merry-go-round horsies turned cartwheels in the street. The spray-any-color-paint-on-the-spin-art creations at the pier were fifty-cent Jackson Pollock rainbow heroin hits that made your skin tingle and the grains of sand swell up and rise to the sky like helium balloons. Looking into the kaleidoscopic eyes of a scruffy Bukowski barfly sitting in the lotus position along with the bike trails fractured your soul into hundreds of disconnected psychedelic shards. Each sharp piece of your mind begging for sobriety.",
     author: "Paul Beatty",
     origin: "excerpt from <b>The White Boy Shuffle</b>"
 },
@@ -150,9 +150,42 @@ plaintext_list = [{
 	plaintext: "He never looked better, nor had he been loved more, nor had the breeding of his animals been wilder. There was a slaughtering of so many cows, pigs, and chickens for the endless parties that the ground in the courtyard turned black and muddy with so much blood. It was an eternal execution ground of bones and innards, a mud pit of leftovers, and they had to keep exploding dynamite bombs all the time so that the buzzards would not pluck out the guests' eyes",
 	author: "Gabriel García Márquez",
 	origin: "excerpt from <b>One Hundred Years of Solitude</b>"
-}
+},
+{
+  id: "24",
+  plaintext: "Those who came before us made certain that this country rode the first waves of the industrial revolutions, the first waves of modern invention, and the first wave of nuclear power, and this generation does not intend to founder in the backwash of the coming age of space. We mean to be a part of it--we mean to lead it. For the eyes of the world now look into space, to the moon and to the planets beyond, and we have vowed that we shall not see it governed by a hostile flag of conquest, but by a banner of freedom and peace. We have vowed that we shall not see space filled with weapons of mass destruction, but with instruments of knowledge and understanding.",
+  author: "John F. Kennedy",
+  origin: "excerpt from <b>Address at Rice University on the Nation's Space Effort</b>"
+},
+{
+  id: "25",
+  plaintext: "Here's the thing. You said a \"jackdaw is a crow.\"<br> Is it in the same family? Yes. No one's arguing that.<br>As someone who is a scientist who studies crows, I am telling you, specifically, in science, no one calls jackdaws crows. If you want to be \"specific\" like you said, then you shouldn't either. They're not the same thing.<br>If you're saying \"crow family\" you're referring to the taxonomic grouping of Corvidae, which includes things from nutcrackers to blue jays to ravens.<br>So your reasoning for calling a jackdaw a crow is because random people \"call the black ones crows?\" Let's get grackles and blackbirds in there, then, too. <br> Also, calling someone a human or an ape? It's not one or the other, that's not how taxonomy works. They're both. A jackdaw is a jackdaw and a member of the crow family. But that's not what you said. You said a jackdaw is a crow, which is not true unless you're okay with calling all members of the crow family crows, which means you'd call blue jays, ravens, and other birds crows, too. Which you said you don't. It's okay to just admit you're wrong, you know?",
+  author: "/u/Unidan",
+  origin: "comment originally posted on <b>reddit.com</br>",
+},
+{
+  id: "26",
+  plaintext: "We are challenging the FBI’s demands with the deepest respect for American democracy and a love of our country. We believe it would be in the best interest of everyone to step back and consider the implications. While we believe the FBI’s intentions are good, it would be wrong for the government to force us to build a backdoor into our products. And ultimately, we fear that this demand would undermine the very freedoms and liberty our government is meant to protect.",
+  author: "Tim Cook",
+  origin: "excerpt from Apple's open letter <b>A Message to Our Customers</b>"
+},
+{
+  id: "27",
+  plaintext: "This is our world now... the world of the electron and the switch, the beauty of the baud. We make use of the service already existing without paying for what could be dirt-cheap if it wasn't run by profiteering gluttons, and you call us criminals. We explore... and you call us criminals. We seek after knowledge, and you call us criminals. We exist without skin color, without nationality, without religous bias... and you call us criminals. You build atomic bombs, you wage wars, you murder, cheat, and lie to us and try to make us believe it's for our own good, yet we're the criminals.",
+  author: "Loyd Blankenship",
+  origin: "excerpt from <b>The Conscience of a Hacker</b>"
+},
+{
+  id: "28",
+  plaintext: "You keep it going man<br> You keep those books rolling<br> You pick up all those books that you're gonna read and not remember<br> And you roll, man<br> You get that associate's degree, okay?<br> Then you get your bachelor's<br> Then you get your masters<br> Then you get your masters' masters<br> Then you get your doctorate<br> You go man!<br> And then when everyone says quit<br> You show them those degrees, man<br> When everyone says \"Hey, you're not working, you're not making any money\"<br> You say \"You look at my degrees, and you look at my life<br> Yeah, I'm fifty-two! So what?<br> Hate all you want, but I'm smart, I'm so smart<br> And I'm in school<br> All these guys out here making money all these ways<br> And I'm spending mine to be smart!<br> You know why?<br> Cause when I die buddy<br> You know what's gonna keep me warm?<br> That's right, those degrees.\"",
+  author: "Kanye West",
+  origin: "exerpt from <b>School Spirit (Skit 2)</b> on Graduation",
+  notes: "plz don't sue me kanye"
+},
+{
+  id: "29",
+  plaintext: "If I may add a personal note, may I say that I know full-well that all mankind have been subjected, without any opposition, for so long to the anti-God theoretical astronomy which kills in early youth all respect for the Creator's statements regarding the construction of the earth and the heavens, that only one here and there will pay any attention whatsoever to any ancient and fighting contrary thought. But I have seen just how ready and keenly interested the youth of today can become when they realise that equally scientific arguments can be brought to bear upon that which has been withheld from them and which they have been indoctrinated to believe is a laughable crank subject. Therefore over the last few years I have made every effort to reach the youthful minds",
+  author: "Samuel Shenton",
+  origin: "excerpt from a personal correspondence between <b>Samuel Shenton and Ellis Hillman</b>"
+},
 ]
-
-
-
-
